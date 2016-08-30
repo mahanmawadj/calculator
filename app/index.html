@@ -12,8 +12,6 @@
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="app/calculator.js"></script>
     <script>
       System.import('app').catch(function(err){ console.error(err); });
     </script>
@@ -105,6 +103,42 @@
   </head>
   <!-- 3. Display the application -->
   <body>
-    <my-app>Loading...</my-app>
+    <my-app>
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="calculator.js"></script>
+    <div ng-app="calcApp" ng-controller="calcController" class="calculator container">
+        <div class="row">
+            <input type="text" class="input" readonly size="8" id="a" ng-model="calculator.currentDisplay">
+            <input type="text" class="input operand" readonly size="1" id="b" ng-model="calculator.operation">
+        </div>
+        <div class="row">
+            <button class="key clear action" type="button" ng-click="onClearClick()">Clear</button>
+        </div>
+        <div class="row">
+            <button class="key action" type="button" ng-click="onOpClick('+')">+</button>
+            <button class="key action" type="button" ng-click="onOpClick('-')">-</button>
+            <button class="key action" type="button" ng-click="onOpClick('*')">*</button>
+            <button class="key action" type="button" ng-click="onOpClick('/')">/</button>
+        </div>
+        <div class="row">
+            <button class="key" type="button" ng-click="onNumKeyClick(0)">0</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(1)">1</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(2)">2</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(3)">3</button>
+        </div>
+        <div class="row">
+            <button class="key" type="button" ng-click="onNumKeyClick(4)">4</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(5)">5</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(6)">6</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(7)">7</button>
+        </div>
+        <div class="row">
+            <button class="key" type="button" ng-click="onNumKeyClick(8)">8</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(9)">9</button>
+            <button class="key" type="button" ng-click="onNumKeyClick('.')">.</button>
+            <button class="key action" type="button" ng-click="onCalClick()">=</button>
+        </div>
+    </div>
+	</my-app>
   </body>
 </html>

@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Calculator demo.</title>
+    <style>
+        *,
+        *:after,
+        *:before {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+            *:before,
+            *:after {
+                display: table-cell;
+                content: '';
+            }
+
+            *:after {
+                clear: both;
+            }
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 355px;
+        }
+
+        .calculator {
+            padding: 5px;
+            padding-bottom: 10px;
+            padding-left: 12px;
+            margin-top: 20px;
+            background-color: #8e8e8e;
+            border-radius: 5px;
+            font-size: 0;
+        }
+
+            .calculator .input {
+                width: 85%;
+                height: 50px;
+                border: thin;
+                background-color: #ffffff;
+                text-align: right;
+                padding-right: 5px;
+                font-size: 30px;
+                display: inline-block;
+            }
+
+            .calculator .operand {
+                width: 10%;
+                margin-left: 2%;
+                text-align: center;
+            }
+
+            .calculator .row {
+                margin-top: 10px;
+            }
+
+            .calculator .key {
+                width: 23%;
+                display: inline-block;
+                background-color: #000000;
+                color: white;
+                font-size: 1rem;
+                margin-right: 2%;
+                border-radius: 5px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+            }
+
+            .calculator .clear {
+                width: 98%;
+            }
+
+            .calculator .key:hover {
+                cursor: pointer;
+                background-color: #606060;
+            }
+
+        .key.action {
+            background-color: #534f4f;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="calculator.js"></script>
+    <div ng-app="calcApp" ng-controller="calcController" class="calculator container">
+        <div class="row">
+            <input type="text" class="input" readonly size="8" id="a" ng-model="calculator.currentDisplay">
+            <input type="text" class="input operand" readonly size="1" id="b" ng-model="calculator.operation">
+        </div>
+        <div class="row">
+            <button class="key clear action" type="button" ng-click="onClearClick()">Clear</button>
+        </div>
+        <div class="row">
+            <button class="key action" type="button" ng-click="onOpClick('+')">+</button>
+            <button class="key action" type="button" ng-click="onOpClick('-')">-</button>
+            <button class="key action" type="button" ng-click="onOpClick('*')">*</button>
+            <button class="key action" type="button" ng-click="onOpClick('/')">/</button>
+        </div>
+        <div class="row">
+            <button class="key" type="button" ng-click="onNumKeyClick(0)">0</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(1)">1</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(2)">2</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(3)">3</button>
+        </div>
+        <div class="row">
+            <button class="key" type="button" ng-click="onNumKeyClick(4)">4</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(5)">5</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(6)">6</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(7)">7</button>
+        </div>
+        <div class="row">
+            <button class="key" type="button" ng-click="onNumKeyClick(8)">8</button>
+            <button class="key" type="button" ng-click="onNumKeyClick(9)">9</button>
+            <button class="key" type="button" ng-click="onNumKeyClick('.')">.</button>
+            <button class="key action" type="button" ng-click="onCalClick()">=</button>
+        </div>
+    </div>
+</body>
+</html>
