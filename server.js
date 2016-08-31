@@ -4,12 +4,17 @@ var morgan = require('morgan');             // log requests to the console (expr
 
 // configuration =================
 
-app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
+app.use(express.static(__dirname + '/public'));                // set the static files location /public/img will be /img for users
 app.use(morgan('dev'));    
 
 // listen (start app with node server.js) ======================================
-app.listen(8080);
-console.log("App listening on port 8080");
-app.get('*', function(req, res) {
-        res.sendFile('./public/index.html', {"root": __dirname}); // load the single view file (angular will handle the page changes on the front-end)
-    });
+app.set('port', (process.env.PORT || 5000));
+
+app.get('/', function(request, response) {
+  response.render('public/index');
+});
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});	
+	
